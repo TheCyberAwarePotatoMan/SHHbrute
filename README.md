@@ -5,7 +5,7 @@
 # USAGE INSTRUCTIONS:
 ### To use this tool, follow these steps:
 
-### Run iplistmaker.py to generate a list of IP addresses based on your input. The output will be saved to a file called ips.txt. for instance if i input 1.1.1.1-2 it will output 1.1.1.1, 1.1.1.2
+### Run iplistmaker.py to generate a list of IP addresses based on your input. The output will be saved to a file called ips.txt. For instance if you input 1.1.1.1-2 it will output 1.1.1.1, 1.1.1.2
 
 ### Run sshfinder.py to scan the IP addresses in ips.txt for open SSH ports. Any matches will be added to a file called sships.txt.
 
