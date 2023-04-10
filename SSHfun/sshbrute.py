@@ -18,7 +18,7 @@ with open("programdata/sships.txt", "r") as f, open("programdata/yay.txt", "w") 
         print(f"Trying to connect to {host}...")
         connected = False
         for i in range(max_retries):
-            if connected
+            if connected == True:
                 connected = False
                 break
             for username in usernames:
